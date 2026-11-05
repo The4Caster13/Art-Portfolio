@@ -3,36 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Construction from "./construction";
-import { projectsData } from "@/components/Projects";
-import type { MediaItem } from "@/components/Projects";
+import { projectsData } from "@/data/projects";
+import type { MediaItem, Project } from "@/types/project";
 import STLViewer from "@/components/STLViewer";
-
-interface ProgressionStage {
-  stage: string;
-  title: string;
-  description: string;
-  image: string;
-  icon?: string;
-  details: {
-    process: string;
-    tools: string[];
-    timeline: string;
-    deliverables: string[];
-  };
-}
-
-interface Project {
-  title: string;
-  image: string;
-  description: string;
-  year: string;
-  location: string;
-  featured: boolean;
-  construction?: boolean;
-  images?: MediaItem[];
-  details?: string;
-  progressionStages?: ProgressionStage[];
-}
+import ResearchDetail from "@/components/ResearchDetail";
+import CodeDetail from "@/components/CodeDetail";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -56,6 +31,16 @@ const ProjectDetail = () => {
   //construction page popup (if there is nothing there)
   if (project.construction) {
     return <Construction project={project} />;
+  }
+
+  // research reports get their own layout (summary + pdf download)
+  if (project.research) {
+    return <ResearchDetail title={project.title} year={project.year} research={project.research} />;
+  }
+
+  // github case studies get their own layout too
+  if (project.code) {
+    return <CodeDetail title={project.title} year={project.year} code={project.code} />;
   }
 
   const media: MediaItem[] =

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { projectsData } from "@/components/Projects";
+import { projectsData } from "@/data/projects";
 import {
   Carousel,
   CarouselContent,

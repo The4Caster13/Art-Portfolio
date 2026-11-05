@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { projectsData } from "@/components/Projects";
+import { projectsData } from "@/data/projects";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import GitHubStrip from "@/components/GitHubStrip";
 
 const AllProjects = () => {
   const navigate = useNavigate();
@@ -81,8 +82,12 @@ const AllProjects = () => {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <span>{project.year}</span>
-                    <span>•</span>
-                    <span>{project.location}</span>
+                    {project.location && (
+                      <>
+                        <span>•</span>
+                        <span>{project.location}</span>
+                      </>
+                    )}
                   </div>
 
                 <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
@@ -97,6 +102,8 @@ const AllProjects = () => {
             ))}
           </div>
 
+          {/* other public repos, live from github */}
+          <GitHubStrip />
         </div>
       </main>
 

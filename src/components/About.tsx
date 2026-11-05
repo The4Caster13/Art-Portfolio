@@ -29,7 +29,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-gray-50">
+    <section id="about" className="py-24 md:py-32 bg-gray-50 overflow-hidden">
       <div ref={sectionRef} className="container px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
